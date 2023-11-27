@@ -48,7 +48,7 @@ class EventHandler(pyinotify.ProcessEvent):
                 print(f"Invalid file: {filepath}")
                 
     def should_exclude_directory(self, path):
-        excluded_directories = ['.git', '.*']  # Add directories to exclude
+        excluded_directories = ['.git', ,'/app/.git','.*']  # Add directories to exclude
         for excluded_dir in excluded_directories:
             if os.path.abspath(path).startswith(os.path.abspath(excluded_dir)):
                 return True
