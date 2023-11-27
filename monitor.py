@@ -27,7 +27,7 @@ class EventHandler(pyinotify.ProcessEvent):
                     self.process_large_file(filepath)
             else:  # It's a directory
                 if filepath not in self.opened_directories and self.file_to_monitor is None:
-                    print(f"Opened a directory: {filepath}")
+                    print(f"Opened : {filepath}")
                     self.send_mqtt_message(filepath, f"Opened directory: {filepath}")
                     self.opened_directories.add(filepath)
         
@@ -36,6 +36,9 @@ class EventHandler(pyinotify.ProcessEvent):
                 self.publish_mqtt(filepath, event_mask)
             else:
                 self.publish_mqtt(filepath, event_mask)
+        
+        elif not self.should_exclude_directory(filepath):
+                self.publish_mqtt(filepath, event_mask)
             
         else:
             if event_mask & pyinotify.IN_DELETE:
@@ -43,6 +46,14 @@ class EventHandler(pyinotify.ProcessEvent):
                 self.send_mqtt_message(filepath, f"Deleted file: {filepath}")
             else:
                 print(f"Invalid file: {filepath}")
+                
+    def should_exclude_directory(self, path):
+        excluded_directories = ['.git', '.*']  # Add directories to exclude
+        for excluded_dir in excluded_directories:
+            if os.path.abspath(path).startswith(os.path.abspath(excluded_dir)):
+                return True
+        return False
+        
                 
     def process_large_file(self, filepath):
         try:
@@ -83,7 +94,7 @@ class EventHandler(pyinotify.ProcessEvent):
                 print(f"{{'topic': '{topic}', 'payload': 'File {topic} is Deleted'}}")
                 self.send_mqtt_message(topic, f'File {topic} is Deleted')
             if event_mask & (pyinotify.IN_ACCESS | pyinotify.IN_ISDIR):
-                print(f'Opened {topic} a directory')
+                print(f'Opened {topic}')
                 self.send_mqtt_message(topic, f'Opened {topic} a directory')
         except Exception as e:
             print(f"Error handling event: {str(e)}")
