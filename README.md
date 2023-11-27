@@ -17,14 +17,6 @@ The program monitors and publishes MQTT messages for the following events:
 	•	File Deletion: Notifies when a file is deleted.
 	•	Directory Open: Indicates when a directory is opened.
 
- ## Commands To be tried :
- 	•	ls
-	•	nano file.txt             --> modify the file contents
- 	•	nano file2.txt            --> reate new file
-	•	cp file.txt file1.txt     --> modify the file contents
-  	•	mv file.txt file1.txt
-   	•	mkdir new_folder
-    	•	rm file.txt
  	
 
 ## Requirements
@@ -87,6 +79,15 @@ The program monitors and publishes MQTT messages for the following events:
 			docker exec -it container_id sh
 
 After this step modify any files in the folder you will see the mqtt messages in other terminal which you can observe.
+
+ ## Commands To be tried :
+ 	•	ls
+	•	nano file.txt             --> modify the file contents
+ 	•	nano file2.txt            --> create new file
+	•	cp file.txt file1.txt     --> modify the file contents
+  	•	mv file.txt file1.txt
+   	•	mkdir new_folder
+    	•	rm file.txt
 
 
 9. Example usage:
