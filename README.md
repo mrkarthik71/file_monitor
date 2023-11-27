@@ -26,7 +26,7 @@ The program monitors and publishes MQTT messages for the following events:
 1. Clone the repository:
 
    ```bash
-   --> git clone https://github.com/mrkarthik71/file_monitor.git
+   	git clone https://github.com/mrkarthik71/file_monitor.git
 
 
 2. cd file_monitor
@@ -49,43 +49,52 @@ The program monitors and publishes MQTT messages for the following events:
 
 6. Build Docker Image
 	Build the Docker image using the provided Dockerfile:
-		--> docker build -t file_monitor .
+			
+			docker build -t file_monitor .
 
 	Show Images :	
-		-->  docker images
+			
+			docker images
 
 7. Run Docker Container
 	Run the Docker container with the necessary parameters:
 
 	To run in Linux : 
-		--> docker run -it --name container_name image_id
+			
+			docker run -it --name container_name image_id
 	
 8. Open a running container in other terminal 
 
 	To show containers : 
-		--> docker ps
+			
+			docker ps
+	
 	To Execute containers : 
-		--> docker exec -it container_id sh
+			
+			docker exec -it container_id sh
 
 
 9. Example usage:
 	
-		-->	python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
+			python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
 	
 	Example-1 to Monitor Folder: 
 		
-		--> python monitor.py --path /app --address 127.0.0.1 --port 1883
+			python monitor.py --path /app --address 127.0.0.1 --port 1883
 
 	Example-2 to Monitor File  : 
 
-		--> python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
+			python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
 	
 	Additional commands :
 
 	To start a container :
-		--> winpty docker start container
+
+			winpty docker start container
+
 	To stop a container :
-		--> winpty docker stop container
+
+			winpty docker stop container
 
 
 10. Additional Details
@@ -113,38 +122,46 @@ The program monitors and publishes MQTT messages for the following events:
 1 . Build Docker Image
 
 	Build the Docker image using the provided Dockerfile:
-		--> winpty docker build -t file_monitor .
+
+			winpty docker build -t file_monitor .
+
 	Show Images :
-		-->  docker images
+
+			docker images
 
 2. Run Docker Container
 	Run the Docker container with the necessary parameters:
 
 	To show containers :
-		-->  docker ps
 
-		-->  winpty docker run -it --name container_name container_id
+			docker ps
+
+			winpty docker run -it --name container_name container_id
 	
 	To check this flow open a another container in a separate Terminal to modify the filesystem and check
 	To open a running container : 
-		--> winpty docker exec -it container_id sh
+
+			winpty docker exec -it container_id sh
 		
 
 3. Example usage: Inside Docker Container
 
-		-->	python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
+			python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
 	
 	Example-1 to Monitor Folder: 
 		
-		--> python monitor.py --path /app --address 127.0.0.1 --port 1883
+			python monitor.py --path /app --address 127.0.0.1 --port 1883
 
 	Example-2 to Monitor File  : 
 	
-		--> python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
+			python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
 	
 	Additional commands :
 
 	To start a container :
-		--> winpty docker start container
+
+			winpty docker start container
+
 	To stop a container :
-		--> winpty docker stop container
+
+			winpty docker stop container
