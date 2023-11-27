@@ -75,6 +75,8 @@ The program monitors and publishes MQTT messages for the following events:
 			
 			docker exec -it container_id sh
 
+After this step modify any files in the folder you will see the mqtt messages in other terminal which you can observe.
+
 
 9. Example usage:
 	
