@@ -29,9 +29,13 @@ The program monitors and publishes MQTT messages for the following events:
    	git clone https://github.com/mrkarthik71/file_monitor.git
 
 
-2. cd file_monitor
+2. Go inside the folder to run :
 
-3. pip3 install -r requirements.txt
+	cd file_monitor
+
+3. Install required dependencies:
+
+	pip3 install -r requirements.txt
 
 ##Usage
 4. Command-line Arguments
