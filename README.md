@@ -3,6 +3,8 @@
 This Python script enables monitoring changes in files or directories and publishes corresponding events to an MQTT broker. 
 It utilizes `paho-mqtt` for MQTT communication and `pyinotify` for filesystem monitoring.
 
+For this setup the docker container is created to monitor the file changes in '/app' repo so we an directly check the changes in the folder once you start the container without running any commands .But if you need speific file to monitor you an use the below commands to change the directory or file.
+
 
 ## Monitored Events
 The program monitors and publishes MQTT messages for the following events:
