@@ -65,11 +65,16 @@ The program monitors and publishes MQTT messages for the following events:
 
 
 9. Example usage:
-	python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
 	
-	Example-1 to Monitor Folder: python monitor.py --path /app --address 127.0.0.1 --port 1883
+		-->	python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
+	
+	Example-1 to Monitor Folder: 
+		
+		--> python monitor.py --path /app --address 127.0.0.1 --port 1883
 
-	Example-2 to Monitor File  : python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
+	Example-2 to Monitor File  : 
+
+		--> python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
 	
 	Additional commands :
 
@@ -121,14 +126,18 @@ The program monitors and publishes MQTT messages for the following events:
 
 3. Example usage: Inside Docker Container
 
-	python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
+		-->	python monitor.py --path /path/to/directory --address 127.0.0.1 --port 1883
 	
-	Example-1 to Monitor Folder: python monitor.py --path /app --address 127.0.0.1 --port 1883
+	Example-1 to Monitor Folder: 
+		
+		--> python monitor.py --path /app --address 127.0.0.1 --port 1883
 
-	Example-2 to Monitor File  : python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
+	Example-2 to Monitor File  : 
+	
+		--> python monitor.py --path /app/file.txt --address 127.0.0.1 --port 1883
 	
 	Additional commands :
 
 		--> To start a container :winpty docker start container
-		
+
 		--> To stop a container :winpty docker stop container
