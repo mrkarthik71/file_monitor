@@ -18,13 +18,13 @@ The program monitors and publishes MQTT messages for the following events:
 	•	Directory Open: Indicates when a directory is opened.
 
  ## Commands To be tried :
- 	•	**ls**
-	•	**nano file.txt** --> modify the file contents
- 	•	**nano file2.txt** --> reate new file
-	•	**cp file.txt file1.txt** --> modify the file contents
-  	•	**mv file.txt file1.txt**
-   	•	**mkdir new_folder**
-    	•	**rm file.txt**
+ 	•	ls
+	•	nano file.txt--> modify the file contents
+ 	•	nano file2.txt --> reate new file
+	•	cp file.txt file1.txt --> modify the file contents
+  	•	mv file.txt file1.txt
+   	•	mkdir new_folder
+    	•	rm file.txt
    
  	
 
