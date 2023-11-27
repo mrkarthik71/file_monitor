@@ -90,11 +90,11 @@ The program monitors and publishes MQTT messages for the following events:
 
 	To start a container :
 
-			winpty docker start container
+			docker start container
 
 	To stop a container :
 
-			winpty docker stop container
+			docker stop container
 
 
 10. Additional Details
