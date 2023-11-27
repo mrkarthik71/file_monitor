@@ -49,18 +49,22 @@ The program monitors and publishes MQTT messages for the following events:
 
 6. Build Docker Image
 	Build the Docker image using the provided Dockerfile:
-
 		--> docker build -t file_monitor .
-		--> Show Images : docker images
+
+	Show Images :	
+		-->  docker images
 
 7. Run Docker Container
 	Run the Docker container with the necessary parameters:
 
-		--> To run in Linux : docker run -it --name container_name image_id
+	To run in Linux : 
+		--> docker run -it --name container_name image_id
 	
 8. Open a running container in other terminal 
 
-		--> To show containers : docker ps
+	To show containers : 
+		--> docker ps
+	To Execute containers : 
 		--> docker exec -it container_id sh
 
 
@@ -78,9 +82,10 @@ The program monitors and publishes MQTT messages for the following events:
 	
 	Additional commands :
 
-		--> To start a container :winpty docker start container
-
-		--> To stop a container :winpty docker stop container
+	To start a container :
+		--> winpty docker start container
+	To stop a container :
+		--> winpty docker stop container
 
 
 10. Additional Details
@@ -106,22 +111,23 @@ The program monitors and publishes MQTT messages for the following events:
 ## To Run in Windows :
 
 1 . Build Docker Image
+
 	Build the Docker image using the provided Dockerfile:
-
 		--> winpty docker build -t file_monitor .
-
-		--> Show Images : docker images
+	Show Images :
+		-->  docker images
 
 2. Run Docker Container
 	Run the Docker container with the necessary parameters:
 
-		--> To show containers : docker ps
+	To show containers :
+		-->  docker ps
 
-		--> To run in windows :  winpty docker run -it --name container_name container_id
+		-->  winpty docker run -it --name container_name container_id
 	
 	To check this flow open a another container in a separate Terminal to modify the filesystem and check
-
-		--> To open a running container : winpty docker exec -it container_id sh
+	To open a running container : 
+		--> winpty docker exec -it container_id sh
 		
 
 3. Example usage: Inside Docker Container
@@ -138,6 +144,7 @@ The program monitors and publishes MQTT messages for the following events:
 	
 	Additional commands :
 
-		--> To start a container :winpty docker start container
-
-		--> To stop a container :winpty docker stop container
+	To start a container :
+		--> winpty docker start container
+	To stop a container :
+		--> winpty docker stop container
