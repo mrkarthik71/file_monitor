@@ -66,13 +66,13 @@ class EventHandler(pyinotify.ProcessEvent):
                     chunk_number += 1
                     # Send chunk over MQTT
                     topic = f"{os.path.abspath(filepath)}/chunk_{chunk_number}"
-                    message = chunk  # You might need to serialize the chunk depending on your use case
+                    message = chunk  # Chunks serialize
                     self.send_mqtt_message(topic, message)
                     print(f"Sent chunk {chunk_number} for {filepath} over MQTT")
         except Exception as e:
             print(f"Error processing large file: {str(e)}")
 
-    def publish_mqtt(self, filepath, event_mask):
+    def publish_mqtt(self, filepath, event_mask): #it will publish mqtt messages based on the events received
         topic = os.path.abspath(filepath)
         try:
             if event_mask & pyinotify.IN_CREATE:
@@ -86,8 +86,7 @@ class EventHandler(pyinotify.ProcessEvent):
                     print(f"{{'topic': '{topic}', 'payload': 'File is not Modified'}}")
                     self.send_mqtt_message(topic, f'File {topic} not modified')
                 else:
-                    print(f"{{'topic': '{topic}', 'payload': 'File is opened'}}")
-                                   
+                    print(f"{{'topic': '{topic}', 'payload': 'File is opened'}}")                          
             if event_mask & pyinotify.IN_DELETE:
                 print(f"{{'topic': '{topic}', 'payload': 'File is Deleted'}}")
                 self.send_mqtt_message(topic, f'File {topic} is Deleted')
