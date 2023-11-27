@@ -12,11 +12,11 @@ class EventHandler(pyinotify.ProcessEvent):
         self.mqtt_client = mqtt_client
         self.opened_directories = set()
         self.file_to_monitor = file_to_monitor
+        self.file_opened = False 
 
     def process_default(self, event):
         filepath = os.path.join(event.path, event.name)
         event_mask = event.mask
-        
 
         if os.path.exists(filepath):
             if os.path.isfile(filepath):
@@ -26,7 +26,7 @@ class EventHandler(pyinotify.ProcessEvent):
                     print(f"Processing large file: {filepath}")
                     self.process_large_file(filepath)
             else:  # It's a directory
-                if filepath not in self.opened_directories and self.file_to_monitor is None:
+                if filepath not in self.opened_directories and self.file_to_monitor is None and pyinotify.IN_ISDIR:
                     print(f"Opened : {filepath}")
                     self.send_mqtt_message(filepath, f"Opened directory: {filepath}")
                     self.opened_directories.add(filepath)
@@ -48,7 +48,7 @@ class EventHandler(pyinotify.ProcessEvent):
                 print(f"Invalid file: {filepath}")
                 
     def should_exclude_directory(self, path):
-        excluded_directories = ['.git' ,'/app/.git','.*']  # Add directories to exclude
+        excluded_directories = ['.git', '.*','./app/.git/*']  # Add directories to exclude
         for excluded_dir in excluded_directories:
             if os.path.abspath(path).startswith(os.path.abspath(excluded_dir)):
                 return True
@@ -76,26 +76,24 @@ class EventHandler(pyinotify.ProcessEvent):
         topic = os.path.abspath(filepath)
         try:
             if event_mask & pyinotify.IN_CREATE:
-                print(f"{{'topic': '{topic}', 'payload': 'New File {topic} has been Created'}}")
+                print(f"{{'topic': '{topic}', 'payload': 'New File has been Created'}}")
                 self.send_mqtt_message(topic, f'New File {topic} has been Created')
-            if event_mask & pyinotify.IN_OPEN:
-                print(f"{{'topic': '{topic}', 'payload': 'File {topic} is Opened'}}")
-                self.send_mqtt_message(topic, f'File {topic} is Opened')
-            if event_mask & pyinotify.IN_MODIFY :
-                print(f"{{'topic': '{topic}', 'payload': 'File {topic} has been modified'}}")
-                self.send_mqtt_message(topic, f'File {topic} has been modified')
             if event_mask & pyinotify.IN_CLOSE_WRITE:
-                print(f"{{'topic': '{topic}', 'payload': 'File {topic} is modified and closed'}}")
+                print(f"{{'topic': '{topic}', 'payload': 'File is modified and closed'}}")
                 self.send_mqtt_message(topic, f'File {topic} is modified and closed')
-            if event_mask & pyinotify.IN_CLOSE_NOWRITE:
-                print(f"{{'topic': '{topic}', 'payload': 'File {topic} opened but not modified'}}")
-                self.send_mqtt_message(topic, f'File {topic} opened but not modified')
+            if event_mask & pyinotify.IN_OPEN :
+                if event_mask & pyinotify.IN_CLOSE_NOWRITE:
+                    print(f"{{'topic': '{topic}', 'payload': 'File is not Modified'}}")
+                    self.send_mqtt_message(topic, f'File {topic} not modified')
+                else:
+                    print(f"{{'topic': '{topic}', 'payload': 'File is opened'}}")
+                                   
             if event_mask & pyinotify.IN_DELETE:
-                print(f"{{'topic': '{topic}', 'payload': 'File {topic} is Deleted'}}")
+                print(f"{{'topic': '{topic}', 'payload': 'File is Deleted'}}")
                 self.send_mqtt_message(topic, f'File {topic} is Deleted')
             if event_mask & (pyinotify.IN_ACCESS | pyinotify.IN_ISDIR):
                 print(f'Opened {topic}')
-                self.send_mqtt_message(topic, f'Opened {topic} a directory')
+                self.send_mqtt_message(topic, f'Opened {topic} ')
         except Exception as e:
             print(f"Error handling event: {str(e)}")
 
