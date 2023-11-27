@@ -80,6 +80,7 @@ The program monitors and publishes MQTT messages for the following events:
 
 After this step modify any files in the folder you will see the mqtt messages in other terminal which you can observe.
 
+ 
  ## Commands To be tried :
  	•	ls
 	•	nano file.txt             --> modify the file contents
