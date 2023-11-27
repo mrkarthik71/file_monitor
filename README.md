@@ -31,11 +31,11 @@ The program monitors and publishes MQTT messages for the following events:
 
 2. Go inside the folder to run :
 
-	cd file_monitor
+		cd file_monitor
 
 3. Install required dependencies:
 
-	pip3 install -r requirements.txt
+		pip3 install -r requirements.txt
 
 ##Usage
 4. Command-line Arguments
