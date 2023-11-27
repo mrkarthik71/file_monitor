@@ -28,7 +28,7 @@ class EventHandler(pyinotify.ProcessEvent):
             else:  # It's a directory
                 if filepath not in self.opened_directories and self.file_to_monitor is None and pyinotify.IN_ISDIR:
                     print(f"Opened : {filepath}")
-                    self.send_mqtt_message(filepath, f"Opened directory: {filepath}")
+                    self.send_mqtt_message(filepath, f"Opened : {filepath}")
                     self.opened_directories.add(filepath)
         
         elif self.file_to_monitor is not None:
@@ -91,6 +91,12 @@ class EventHandler(pyinotify.ProcessEvent):
             if event_mask & pyinotify.IN_DELETE:
                 print(f"{{'topic': '{topic}', 'payload': 'File is Deleted'}}")
                 self.send_mqtt_message(topic, f'File {topic} is Deleted')
+            if event_mask & pyinotify.IN_MOVED_FROM:
+                print(f"{{'topic': '{topic}', 'payload': 'File is Moved from {topic}'}}")
+                self.send_mqtt_message(topic, f'File is Moved from {topic}')
+            if event_mask & pyinotify.IN_MOVED_TO:
+                print(f"{{'topic': '{topic}', 'payload': 'File is Moved to {topic}'}}")
+                self.send_mqtt_message(topic, f'File is Moved to {topic}')
             if event_mask & (pyinotify.IN_ACCESS | pyinotify.IN_ISDIR):
                 print(f'Opened {topic}')
                 self.send_mqtt_message(topic, f'Opened {topic} ')
