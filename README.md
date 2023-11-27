@@ -25,9 +25,7 @@ The program monitors and publishes MQTT messages for the following events:
 
 1. Clone the repository:
 
-   ```bash
-   		git clone https://github.com/mrkarthik71/file_monitor.git
-
+		git clone https://github.com/mrkarthik71/file_monitor.git
 
 2. Go inside the folder to run :
 
